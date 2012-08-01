@@ -1,0 +1,5 @@
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+  <Set name="contextPath">/s/page</Set>
+  <Set name="war"><SystemProperty name="jetty.home" default="."/>/webapps/s.war</Set>
+  <Set name="defaultsDescriptor"><SystemProperty name="jetty.home" default="."/>/etc/webdefault.xml</Set>
+</Configure>
