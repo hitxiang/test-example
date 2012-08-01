@@ -6,8 +6,8 @@ public class User {
 
 	private UUID id;
 	private String name;
-	private long totalScore;
-	private long highestScore;
+	private long totalScore = 0;
+	private long highestScore = 0;
 	
 	public User(String name) {
 	  id = UUID.randomUUID();	
