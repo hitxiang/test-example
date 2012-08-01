@@ -16,6 +16,9 @@ public class IndexAction extends ActionSupport {
 	@Action(value="action-one")
 	public String actionOne() {
 		
+		// determin if the input is palindrome
+		// if it is return score
+		// else return hint: the Longest Palindromic Substring
 		return "action-one";
 	}
 }
