@@ -2,7 +2,7 @@ package com.playfish.palindrome.model;
 
 import java.util.Comparator;
 
-public class Score {
+public class Score implements Comparable<Score> {
   private String id;
   private long score;
   private String name;
@@ -50,6 +50,11 @@ public class Score {
     Score other = (Score) obj;  
     return id.equals(other.id);
   }
+
+@Override
+public int compareTo(Score s) {
+	return Long.signum(s.score - this.score);
+}
   
 
 }
