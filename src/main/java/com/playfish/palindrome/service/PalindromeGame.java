@@ -15,15 +15,15 @@ public class PalindromeGame {
 	private final static int NUM_IN_TOP_RANK = 5;
 	private final static Logger logger = Logger.getLogger(PalindromeGame.class);
 
-	private static Object highestScoreLock = new Object();
-	private static AbstractQueue<Score> highestScoreQueue = new PriorityQueue<Score>(
+	private final static Object highestScoreLock = new Object();
+	private final static AbstractQueue<Score> highestScoreQueue = new PriorityQueue<Score>(
 			NUM_IN_TOP_RANK + 1);
 
-	private static Object totalScoreLock = new Object();
-	private static AbstractQueue<Score> totalScoreQueue = new PriorityQueue<Score>(
+	private final static Object totalScoreLock = new Object();
+	private final static AbstractQueue<Score> totalScoreQueue = new PriorityQueue<Score>(
 			NUM_IN_TOP_RANK + 1);
 
-	private static ConcurrentHashMap<String, User> userMap = new ConcurrentHashMap<String, User>();
+	private final static ConcurrentHashMap<String, User> userMap = new ConcurrentHashMap<String, User>();
 
 	private PalindromeGame() {
 	}
