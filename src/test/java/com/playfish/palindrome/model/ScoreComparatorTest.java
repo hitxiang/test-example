@@ -10,7 +10,7 @@ public class ScoreComparatorTest {
   @Test
   public void testOrderInQueue(){
     AbstractQueue<Score> highestScoreQueue = 
-        new PriorityQueue<Score>(5, new Score.ScoreComparator());
+        new PriorityQueue<Score>(5);
     highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name101", 101));
     highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name1101", 1101));
     highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name11", 11));
@@ -37,7 +37,7 @@ public class ScoreComparatorTest {
     highestScoreList.add(new Score(UUID.randomUUID().toString(), "name99", 99));
     
     Score[] highestArray = highestScoreList.toArray(new Score[0]);
-    Arrays.sort(highestArray, new Score.ScoreComparator());
+    Arrays.sort(highestArray);
     
     long[] result = new long[5];
     long[] expecteds = new long[]{9,11,99,101,1101};
@@ -46,7 +46,7 @@ public class ScoreComparatorTest {
     }
     assertArrayEquals(expecteds, result);
     
-    Arrays.sort(highestArray);
+    Arrays.sort(highestArray, Collections.reverseOrder());
     expecteds = new long[]{1101,101,99,11,9};
     for (int i = 0; i < 5; i++) {
       result[i] = highestArray[i].getScore(); 

@@ -13,14 +13,6 @@ public class Score implements Comparable<Score> {
     this.name = name;
     this.score = score;
   }
-  
-  public static class ScoreComparator implements Comparator<Score> {
-
-    @Override
-    public int compare(Score s1, Score s2) {
-      return Long.signum(s1.score - s2.score);
-    }    
-  }
 
 
   public String getName() {
@@ -53,7 +45,7 @@ public class Score implements Comparable<Score> {
 
 @Override
 public int compareTo(Score s) {
-	return Long.signum(s.score - this.score);
+	return Long.signum(this.score - s.score);
 }
   
 

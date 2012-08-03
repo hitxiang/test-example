@@ -2,6 +2,7 @@ package com.playfish.palindrome.service;
 
 import java.util.AbstractQueue;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,11 +17,11 @@ public class PalindromeGame {
 
 	private static Object highestScoreLock = new Object();
 	private static AbstractQueue<Score> highestScoreQueue = new PriorityQueue<Score>(
-			NUM_IN_TOP_RANK + 1, new Score.ScoreComparator());
+			NUM_IN_TOP_RANK + 1);
 
 	private static Object totalScoreLock = new Object();
 	private static AbstractQueue<Score> totalScoreQueue = new PriorityQueue<Score>(
-			NUM_IN_TOP_RANK + 1, new Score.ScoreComparator());
+			NUM_IN_TOP_RANK + 1);
 
 	private static ConcurrentHashMap<String, User> userMap = new ConcurrentHashMap<String, User>();
 
@@ -58,12 +59,19 @@ public class PalindromeGame {
 	public static Score[] getTopTotalScoreList() {
 		return getTopScoreArray(totalScoreQueue);
 	}
+	
+	public static void clear() {
+		highestScoreQueue.clear();
+		totalScoreQueue.clear();
+		userMap.clear();	
+	}
 
 	private static Score[] getTopScoreArray(AbstractQueue<Score> queue) {
 		Score[] result = (Score[]) queue.toArray(new Score[0]);
-		Arrays.sort(result, new Score.ScoreComparator());
+		Arrays.sort(result, Collections.reverseOrder());
 
 		if (result.length > NUM_IN_TOP_RANK) { // impossible in normal case
+			logger.error(queue + " : more than " + NUM_IN_TOP_RANK + " records => " + result.length);
 			Score[] result2 = new Score[NUM_IN_TOP_RANK];
 			System.arraycopy(result, 0, result2, 0, NUM_IN_TOP_RANK);
 			return result2;
