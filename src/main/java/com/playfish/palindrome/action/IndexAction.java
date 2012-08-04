@@ -56,7 +56,7 @@ public class IndexAction extends ActionSupport {
 		return "load";
 	}
 
-	@Action(value = "name")
+	@Action(value = "name.action")
 	public String name() {
 		return "name";
 	}
@@ -118,7 +118,7 @@ public class IndexAction extends ActionSupport {
 	}
 	
 
-	// Should use filter like function of struts
+	// Should use Filter/Intercepter like function of struts
 	private User loadUser() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		String uuid = (String) session.get(User.IDENTIFY_TAG);

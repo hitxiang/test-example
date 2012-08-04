@@ -1,9 +1,8 @@
 <html>
     <head>
          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <title>Palindrome</title>
-         <script src="javascript/jquery-1.7.2.js"></script>
-         <script src="jquery.mobile/jquery.mobile-1.1.1.js"></script>
          <style type="text/css">
             .notes {
                 background-color:#DDFFDD;
@@ -13,23 +12,20 @@
             .notes li{ 
                 list-style: none; 
             }
+            div {
+               text-align:center;
+            }
         </style>
     </head>
     <body>
+        <h4>Total score rank && Highest score rank</h4>
         <div>
-            <h3>Total score rank && Highest score rank</h3>
-            <div align="center">
-            <a href="ranks">check!!</a>
-            </div>          
+            <a href="ranks.action">check!!</a>         
         </div>
+        <h4>Your record</h4>
         <div>
-            <h3>Your record</h3>
             <@s.push value="user">
             <table>
-              <tr>
-                <td>id: </td> 
-                <td><@s.property value="id"/></td>
-              </tr>
               <tr>
                 <td>Your name    : </td> 
                 <td>
@@ -64,9 +60,9 @@
               <@s.actionmessage/>
            </div>
         </@s.if>
-        <div>
-        <@s.form action="submit">
-          <@s.textfield name="palindromeString" label="Please input a palindrome" />
+        <div stye="">
+        <@s.form action="submit.action">
+          <@s.textfield name="palindromeString" label="Input a palindrome" size="30"/>
           <@s.submit value="Submit" />
         </@s.form>  
         </div>

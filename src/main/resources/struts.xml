@@ -5,7 +5,6 @@
 
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.action.extension" value=""/>
 	<constant name="struts.convention.package.locators.basePackage" value="com.playfish.palindrome.action" />
     <constant name="struts.freemarker.templatesCache" value="false" />
 </struts>

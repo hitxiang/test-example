@@ -1,6 +1,7 @@
 <html>
     <head>
          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">         
          <title>Register</title>
          <style type="text/css">
          .rank1 {
@@ -23,6 +24,15 @@
          }         
 
          .rank5 {
+           text-align:center;
+         }
+
+         img {
+             max-width: 60%;
+             height: auto;
+         }
+         
+         div {
            text-align:center;
          }
          </style>
@@ -62,6 +72,10 @@
                </tr>
                </@s.iterator>
             </table>
-        </div>        
+        </div>  
+        <br/>
+        <div align="center">
+          <a href="load"><img src="images/challenge.jpeg"></a>
+        </div>      
     </body>
 </html>
