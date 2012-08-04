@@ -4,10 +4,11 @@ import java.util.AbstractQueue;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 
+import com.playfish.palindrome.dao.UserDao;
+import com.playfish.palindrome.dao.impl.UserDaoLocalImpl;
 import com.playfish.palindrome.model.Score;
 import com.playfish.palindrome.model.User;
 
@@ -23,22 +24,22 @@ public class PalindromeGame {
 	private final static AbstractQueue<Score> totalScoreQueue = new PriorityQueue<Score>(
 			NUM_IN_TOP_RANK + 1);
 
-	private final static ConcurrentHashMap<String, User> userMap = new ConcurrentHashMap<String, User>();
+	private final static UserDao userDao = UserDaoLocalImpl.getInstance();
 
 	private PalindromeGame() {
 	}
 	
 	public static User addUser(String uuid) {		
-		User u = new User(uuid);
-		userMap.put(uuid, u);
+		User u = userDao.add(uuid);
         return u;
+	}
+	
+	public static User getUser(String uuid) {
+		return userDao.get(uuid);
 	}
 
 	public static User registerUser(String uuid, String name) {
-		User u = userMap.get(uuid);
-		u.setName(name);
-		u.setRegisted(true);
-		
+		User u = userDao.register(uuid, name);
 		updateQueue(highestScoreLock, highestScoreQueue, u, u.getHighestScore());
 		updateQueue(totalScoreLock, totalScoreQueue, u, u.getTotalScore());			
 		return u;
@@ -63,7 +64,7 @@ public class PalindromeGame {
 	public static void clear() {
 		highestScoreQueue.clear();
 		totalScoreQueue.clear();
-		userMap.clear();	
+		userDao.clear();	
 	}
 
 	private static Score[] getTopScoreArray(AbstractQueue<Score> queue) {

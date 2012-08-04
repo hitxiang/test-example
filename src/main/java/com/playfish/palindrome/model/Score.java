@@ -1,6 +1,5 @@
 package com.playfish.palindrome.model;
 
-import java.util.Comparator;
 
 public class Score implements Comparable<Score> {
   private String id;

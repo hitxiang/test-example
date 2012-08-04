@@ -1,6 +1,5 @@
 package com.playfish.palindrome.model;
 
-import java.util.Comparator;
 import java.util.Date;
 import java.util.UUID;
 import java.io.Serializable;
@@ -60,6 +59,10 @@ public class User implements Serializable {
 
 	public void setRegisted(boolean registed) {
 		this.registed = registed;
+	}
+
+	public Date getLastActive() {
+		return lastActive;
 	}
 
 	public boolean isSameWithLast(String str) {
