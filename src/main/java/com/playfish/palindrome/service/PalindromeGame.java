@@ -45,18 +45,18 @@ public class PalindromeGame {
 
 	public static User registerUser(String uuid, String name) {
 		User u = userDao.register(uuid, name);
-		updateQueue(RankType.HIGHEST, u);
-		updateQueue(RankType.TOTAL, u);			
+		checkAndpdateQueue(RankType.HIGHEST, u);
+		checkAndpdateQueue(RankType.TOTAL, u);			
 		return u;
 	}
 
 	public static void update(User u, int score) {
-		u.update(score);
+		boolean highestUpdted = u.update(score);
 		if (u.isRegisted()) {
-			if (score > u.getHighestScore()) {
-				updateQueue(RankType.HIGHEST, u);				
+			if (highestUpdted) {
+				checkAndpdateQueue(RankType.HIGHEST, u);				
 			}
-			updateQueue(RankType.TOTAL, u);		
+			checkAndpdateQueue(RankType.TOTAL, u);		
 		}
 	}
 
@@ -98,7 +98,7 @@ public class PalindromeGame {
 		return result;
 	}
 
-	private static void updateQueue(RankType type, User u) {
+	private static void checkAndpdateQueue(RankType type, User u) {
 		Queue<Score> queue = rankQueueList.get(type.ordinal());
 		long score;
 		switch (type) {
@@ -120,36 +120,42 @@ public class PalindromeGame {
 				
 				// Update only when the new score is greater than the smallest score in queue
 				if (minScore.getScore() < score) {
-					if (queue.contains(newScore)) { 
-						// Update when the user exists
-						for (Score s : queue) {
-							if (s.equals(newScore)) {
-								if (logger.isDebugEnabled()) {
-									logger.debug(queue + " ==> delete Score: " + s);
-									logger.debug(queue + " <== add    Score: " + newScore);									
-								}
-
-								s.setScore(newScore.getScore());
-							}
-						}
-					} else {
-						// Remove the smallest one, add the new one
-						Score oldScore = queue.poll();
-						queue.add(newScore);
-						if (logger.isDebugEnabled()) {
-							logger.debug(queue + " ==> delete Score: " + oldScore);
-							logger.debug(queue + " <== add    Score: " + newScore);
-						}
-					}
+					updateQueue(queue, newScore, true);
 				}
-			} else {
+			} else {				
 				Score newScore = new Score(u.getId(), u.getName(), score);
-				queue.add(new Score(u.getId(), u.getName(), score));
-				if (logger.isDebugEnabled()) {
-					logger.debug(queue + " <== add    Score: " + newScore);
-				}
+				updateQueue(queue, newScore, false);
 				  
 			}
+		}
+	}
+
+	private static void updateQueue(Queue<Score> queue, Score newScore, boolean isToDeleteOld) {
+		if (queue.contains(newScore)) { 
+			// Update when the user exists
+			for (Score s : queue) {
+				if (s.equals(newScore)) {
+					if (logger.isDebugEnabled()) {
+						logger.debug(queue + " ==> update Score: " + s + " ==> " + newScore.getScore());								
+					}
+
+					s.setScore(newScore.getScore());
+				}
+			}
+		} else {
+			// Remove the smallest one, add the new one
+			if (isToDeleteOld) {
+				Score oldScore = queue.poll();	
+				if (logger.isDebugEnabled()) {
+					logger.debug(queue + " ==> delete Score: " + oldScore);
+				}
+			}
+
+			if (logger.isDebugEnabled()) {
+				logger.debug(queue + " <== add    Score: " + newScore);
+			}
+			queue.add(newScore);
+
 		}
 	}
 

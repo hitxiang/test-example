@@ -54,6 +54,11 @@ public class PalindromeGameTest {
 		userArray[1] = processOneUser();
 		userArray[2] = processOneUser();
 		userArray[3] = processOneUser();
+		
+		//update score after name is registed
+		User u = userArray[0];
+		PalindromeGame.update(u, u.getHighestScore() + 10);
+		
 		Score[] highScores = PalindromeGame.getHighestScoreRanks();
 		Score[] totalScores = PalindromeGame.getTotalScoreRanks();
         for (int i=0; i< userArray.length; i++) {
@@ -105,6 +110,10 @@ public class PalindromeGameTest {
 		userArray[4] = processOneUser();
 		userArray[5] = processOneUser();
 		userArray[6] = processOneUser();
+		//update score after name is registed
+		User u = userArray[0];
+		PalindromeGame.update(u, u.getHighestScore() + 10);
+		
 		Score[] highScores = PalindromeGame.getHighestScoreRanks();
 		Score[] totalScores = PalindromeGame.getTotalScoreRanks();
         for (int i=0; i< userArray.length; i++) {

@@ -14,6 +14,7 @@ public class User implements Serializable {
 
 	private long totalScore = 0;
 	private int highestScore = 0;
+	private int lastScore = 0;
 
 	private String lastInput;
 	private Date lastActive;
@@ -64,17 +65,27 @@ public class User implements Serializable {
 		return lastActive;
 	}
 
+	public int getLastScore() {
+		return lastScore;
+	}
+
 	public boolean isSameWithLast(String str) {
 		return (lastInput != null && lastInput.equalsIgnoreCase(str));
 	}
 
-	public void update(int score) {
+	/***
+	 * @param score
+	 * @return true if highestScore is updated
+	 */
+	public boolean update(int score) {
+		this.lastScore = score;
 		this.lastActive = new Date();
 		this.totalScore += score;
 		if (score > this.highestScore) {
 			this.highestScore = score;
+			return true;
 		}
-
+		return false;
 	}
 
 	@Override

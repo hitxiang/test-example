@@ -19,6 +19,8 @@ public class IndexAction extends ActionSupport {
 	private final static Logger logger = Logger.getLogger(IndexAction.class); 
 	
 	private String palindromeString;
+	private String name;
+	private User user;
 
 	@Action(value = "index")
 	public String send() {
@@ -27,41 +29,48 @@ public class IndexAction extends ActionSupport {
 
 	@Action(value = "load")
 	public String load() {
-
-		User u = getUser();
-		Score[] highestRank = PalindromeGame.getHighestScoreRanks();
-		Score[] totalRank = PalindromeGame.getTotalScoreRanks();
-
+		loadUser();
 		return "load";
 	}
 
 	@Action(value = "submit")
 	public String submit() {
 
-		logger.debug("submit");
-		User u = getUser();
-		//TODO
+		User u = loadUser();
+
 		if (!StringUtils.isEmpty(palindromeString)) {
-			int score = palindromeString.length();
-			PalindromeGame.update(u, score);
+			if (u.isSameWithLast(palindromeString)) {
+				addActionMessage("The input is the same with last time.");
+			} else {
+				u.setLastInput(palindromeString);
+				int score = StringUtil.countPalindrome(palindromeString);
+				if (score > 0) {
+					PalindromeGame.update(u, score);	
+				} 
+				addActionMessage(getMessages(score));			
+			}
+		} else {
+			addActionMessage("The input is empty.");
 		}
-
-
-		// determin if the input is palindrome
-		// if it is return score
-		// else return hint: the Longest Palindromic Substring
+		
 		return "load";
 	}
 
+	@Action(value = "name")
+	public String name() {
+		return "name";
+	}
+	
 	@Action(value = "register")
 	public String register() {
-		// TODO
-        String name = null;
-        User u = getUser();
-
-		u = PalindromeGame.registerUser(u.getId(), name);
-		updateUser(u);
-		return "action-one";
+        User u = loadUser();
+		u = PalindromeGame.registerUser(u.getId(), this.name);
+		return "load";
+	}
+	
+	@Action(value = "ranks")
+	public String ranks() {
+		return "ranks";
 	}
 
 	public String getPalindromeString() {
@@ -71,20 +80,56 @@ public class IndexAction extends ActionSupport {
 	public void setPalindromeString(String palindromeString) {
 		this.palindromeString = palindromeString;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
-	private User getUser() {
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		User u = (User) session.get(User.IDENTIFY_TAG);
-		if (u == null) {
-			u = PalindromeGame.addUser(UUID.randomUUID().toString());
-			session.put(User.IDENTIFY_TAG, u);			
-		}
-		return u;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	private void updateUser(User u) {
+	public User getUser() {
+		return this.user;
+	}
+	
+	public Score[] getHighestRanks() {
+		return PalindromeGame.getHighestScoreRanks();		
+	}
+	
+	public Score[] getTotalRanks() {
+		return PalindromeGame.getTotalScoreRanks();
+	}
+
+	public String getMessages(long score) {
+		String messages;
+		if (score == 0) {
+			messages = "Pity, It is not a palindrome! Have another try! ";
+		} else if (score < 3) {
+			messages = "Not bad, try more! ";
+		} else if (score < 6) {
+			messages = "Good job, well done! ";
+		} else if (score < 11) {
+			messages = "You are great, please check the highest score rank!";
+		} else {
+			messages = "You are amazing! You have a chance to be the top!";
+		}
+		return messages;
+	}
+	
+
+	// Should use filter like function of struts
+	private User loadUser() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		session.put(User.IDENTIFY_TAG, u);;
+		String uuid = (String) session.get(User.IDENTIFY_TAG);
+		if (uuid == null) {
+			uuid = UUID.randomUUID().toString();
+			session.put(User.IDENTIFY_TAG, uuid);
+			this.user = PalindromeGame.addUser(uuid);
+			return this.user;
+		}
+		this.user = PalindromeGame.getUser(uuid);
+		return this.user;
 	}
 	
 	

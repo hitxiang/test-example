@@ -25,7 +25,7 @@ public class Score implements Comparable<Score> {
   public void setScore(long score) {
     this.score = score;
   }
-
+  
   @Override
   public String toString() {
     return "Score [id=" + id + ", score=" + score + ", name=" + name + "]";
