@@ -7,19 +7,19 @@ import org.junit.Test;
 public class StringUtilTest {
 
 	@Test
-	public void testIsPalindrome_Null() {
-		assertFalse(StringUtil.isPalindrome(null));
+	public void testcountPalindrome_Null() {
+		assertEquals(0, StringUtil.countPalindrome(null));
 	}
 
 	@Test
-	public void testIsPalindrome_FullOfNonPalindromeChars() {
-		assertFalse(StringUtil.isPalindrome("///////////"));
-		assertFalse(StringUtil.isPalindrome("////   ///,///"));
-		assertFalse(StringUtil.isPalindrome("    "));
+	public void testcountPalindrome_FullOfNonPalindromeChars() {
+		assertEquals(0, StringUtil.countPalindrome("///////////"));
+		assertEquals(0, StringUtil.countPalindrome("////   ///,///"));
+		assertEquals(0, StringUtil.countPalindrome("    "));
 	}
 
 	@Test
-	public void testIsPalindrome_False() {
+	public void testcountPalindrome_False() {
 		String[] test_array = new String[] {
 				"Lvel",
 				"Never dd or even",
@@ -30,19 +30,20 @@ public class StringUtilTest {
 				"11/02/2111", "11/0,2/211,1" };
 
 		for (String str : test_array) {
-			assertFalse(StringUtil.isPalindrome(str));
+			assertEquals(0, StringUtil.countPalindrome(str));
 		}
 
 	}
 
 	@Test
-	public void testIsPalindrome_Ture() {
+	public void testcountPalindrome_Ture() {
 		String[] test_array = new String[] {
 				"Level",
 				"Never odd or even",
 				"Too bad - I hid a boot",
 				"A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal - Panama!",
-				"abbA", "tattarrattat", 
+				"abbA", 
+				"tattarrattat", 
 				"11/02/2011", 
 				"11/02/2,011", 
 				"11/22/11", 
@@ -51,9 +52,19 @@ public class StringUtilTest {
 				"20111102" };
 
 		for (String str : test_array) {
-			assertTrue(StringUtil.isPalindrome(str));
+			assertEquals((countLetters(str) + 1)/2, StringUtil.countPalindrome(str));
 		}
 
+	}
+	
+	private int countLetters(String str) {
+		char[] letters = str.toCharArray();
+		
+		int count = 0;
+		for (char ch : letters) {
+			if (Character.isLetterOrDigit(ch)) count++;
+		}
+		return count;		
 	}
 
 }

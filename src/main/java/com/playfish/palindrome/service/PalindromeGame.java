@@ -1,9 +1,11 @@
 package com.playfish.palindrome.service;
 
-import java.util.AbstractQueue;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 import org.apache.log4j.Logger;
 
@@ -15,14 +17,17 @@ import com.playfish.palindrome.model.User;
 public class PalindromeGame {
 	private final static int NUM_IN_TOP_RANK = 5;
 	private final static Logger logger = Logger.getLogger(PalindromeGame.class);
+	
+	private static enum RankType {HIGHEST, TOTAL}
 
-	private final static Object highestScoreLock = new Object();
-	private final static AbstractQueue<Score> highestScoreQueue = new PriorityQueue<Score>(
-			NUM_IN_TOP_RANK + 1);
+	private final static  Object[] lockArray = new Object [] {new Object(), new Object()};
+	private final static  List<Queue<Score>> rankQueueList = new ArrayList<Queue<Score>>(2);
+	static {
+		rankQueueList.add(new PriorityQueue<Score>(NUM_IN_TOP_RANK + 1));
+		rankQueueList.add(new PriorityQueue<Score>(NUM_IN_TOP_RANK + 1));		
+	}
 
-	private final static Object totalScoreLock = new Object();
-	private final static AbstractQueue<Score> totalScoreQueue = new PriorityQueue<Score>(
-			NUM_IN_TOP_RANK + 1);
+
 
 	private final static UserDao userDao = UserDaoLocalImpl.getInstance();
 
@@ -40,39 +45,51 @@ public class PalindromeGame {
 
 	public static User registerUser(String uuid, String name) {
 		User u = userDao.register(uuid, name);
-		updateQueue(highestScoreLock, highestScoreQueue, u, u.getHighestScore());
-		updateQueue(totalScoreLock, totalScoreQueue, u, u.getTotalScore());			
+		updateQueue(RankType.HIGHEST, u);
+		updateQueue(RankType.TOTAL, u);			
 		return u;
 	}
 
 	public static void update(User u, int score) {
 		u.update(score);
 		if (u.isRegisted()) {
-			updateQueue(highestScoreLock, highestScoreQueue, u, u.getHighestScore());
-			updateQueue(totalScoreLock, totalScoreQueue, u, u.getTotalScore());		
+			if (score > u.getHighestScore()) {
+				updateQueue(RankType.HIGHEST, u);				
+			}
+			updateQueue(RankType.TOTAL, u);		
 		}
 	}
 
-	public static Score[] getTopHighestScoreList() {
-		return getTopScoreArray(highestScoreQueue);
+	public static Score[] getHighestScoreRanks() {
+		return getTopScoreArray(RankType.HIGHEST);
 	}
 
-	public static Score[] getTopTotalScoreList() {
-		return getTopScoreArray(totalScoreQueue);
+	public static Score[] getTotalScoreRanks() {
+		return getTopScoreArray(RankType.TOTAL);
 	}
 	
+	/**
+	 * Only for unit test
+	 * */
 	public static void clear() {
-		highestScoreQueue.clear();
-		totalScoreQueue.clear();
+		for (Queue<Score> queue: rankQueueList) {
+			queue.clear();
+		}
 		userDao.clear();	
 	}
 
-	private static Score[] getTopScoreArray(AbstractQueue<Score> queue) {
-		Score[] result = (Score[]) queue.toArray(new Score[0]);
+	private static Score[] getTopScoreArray(RankType type) {
+		Score[] result;
+		Queue<Score> queue = rankQueueList.get(type.ordinal());
+		Object lock = lockArray[type.ordinal()];
+
+		synchronized(lock) {
+			result = (Score[]) queue.toArray(new Score[0]);
+		}
 		Arrays.sort(result, Collections.reverseOrder());
 
 		if (result.length > NUM_IN_TOP_RANK) { // impossible in normal case
-			logger.error(queue + " : more than " + NUM_IN_TOP_RANK + " records => " + result.length);
+			logger.error(queue + " : more than " + NUM_IN_TOP_RANK + " records => [" + result.length + "]");
 			Score[] result2 = new Score[NUM_IN_TOP_RANK];
 			System.arraycopy(result, 0, result2, 0, NUM_IN_TOP_RANK);
 			return result2;
@@ -81,23 +98,42 @@ public class PalindromeGame {
 		return result;
 	}
 
-	private static void updateQueue(Object lock, AbstractQueue<Score> queue,
-			User u, long score) {
-		synchronized (lock) {
-			if (queue.size() >= 5) {
-				Score minScore = queue.peek();
+	private static void updateQueue(RankType type, User u) {
+		Queue<Score> queue = rankQueueList.get(type.ordinal());
+		long score;
+		switch (type) {
+		case HIGHEST:
+			score = u.getHighestScore();
+			break;
+		case TOTAL:
+			score = u.getTotalScore();
+			break;
+		default:
+			logger.error("Wrong rank type");
+			return;
+		}
+		
+		synchronized (lockArray[type.ordinal()]) {
+			if (queue.size() >= NUM_IN_TOP_RANK) {
+				Score minScore = queue.peek(); 				
 				Score newScore = new Score(u.getId(), u.getName(), score);
+				
+				// Update only when the new score is greater than the smallest score in queue
 				if (minScore.getScore() < score) {
-					if (queue.contains(newScore)) {
-						// remove the old one, add the new score;
+					if (queue.contains(newScore)) { 
+						// Update when the user exists
 						for (Score s : queue) {
 							if (s.equals(newScore)) {
-								logger.debug(queue + " ==> delete Score: " + s);
-								logger.debug(queue + " <== add    Score: " + newScore);
+								if (logger.isDebugEnabled()) {
+									logger.debug(queue + " ==> delete Score: " + s);
+									logger.debug(queue + " <== add    Score: " + newScore);									
+								}
+
 								s.setScore(newScore.getScore());
 							}
 						}
 					} else {
+						// Remove the smallest one, add the new one
 						Score oldScore = queue.poll();
 						queue.add(newScore);
 						if (logger.isDebugEnabled()) {

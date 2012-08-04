@@ -8,7 +8,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = -6621015387677942871L;
 	
 	final public static String IDENTIFY_TAG = "PF_UUID";
-	final public static String IS_NEW_TAG = "PF_IS_NEW";
 	private String id;
 	private String name;
 	private boolean registed;

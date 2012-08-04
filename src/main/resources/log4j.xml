@@ -8,6 +8,13 @@
           <param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n"/> 
        </layout> 
     </appender>
+    
+	<appender name="FILE" class="org.apache.log4j.FileAppender">
+	  <param name="File" value="log.txt" />
+	  <layout class="org.apache.log4j.PatternLayout">
+	    <param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n"/> 
+	  </layout>
+	</appender>
  
     <!-- specify the logging level for loggers from other libraries -->
     <logger name="com.opensymphony">
@@ -17,11 +24,16 @@
     <logger name="org.apache.struts2">
     	 <level value="DEBUG" />
     </logger>
+    
+    <logger name="com.playfish.palindrome">
+         <level value="DEBUG" />
+    </logger>
   
    <!-- for all other loggers log only debug and above log messages -->
      <root>
         <priority value="INFO"/> 
         <appender-ref ref="STDOUT" /> 
+        <appender-ref ref="FILE" />
      </root> 
     
 </log4j:configuration> 

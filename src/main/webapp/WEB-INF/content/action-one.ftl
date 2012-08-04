@@ -1,7 +1,7 @@
 <html>
     <head>
          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-         <title>Palindrome</title>
+         <title>Action One</title>
          <script src="javascript/jquery-1.7.2.js"></script>
          <script type="text/javascript">
              function doAjaxPost() {
@@ -11,7 +11,7 @@
 
                 jQuery.ajax({
                     type: "POST",
-                    url: "/Palindrome/AjaxSubmit.do",
+                    url: "/Palindrome/submit.do",
                     data: "name=" + name,
                     success: function(response){
                         // we have the response

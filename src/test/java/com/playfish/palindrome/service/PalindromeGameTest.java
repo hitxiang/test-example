@@ -27,15 +27,15 @@ public class PalindromeGameTest {
 	@Test
 	public void testOneUser_WithoutRegister() {
 		processOneUserWithoutRegister();
-		assertEquals(0, PalindromeGame.getTopHighestScoreList().length);
-		assertEquals(0, PalindromeGame.getTopTotalScoreList().length);
+		assertEquals(0, PalindromeGame.getHighestScoreRanks().length);
+		assertEquals(0, PalindromeGame.getTotalScoreRanks().length);
 	}
 	
 	@Test
 	public void testOneUser_WithRegister() {		
 		User u2 = processOneUser();
-		assertEquals(u2.getHighestScore(), PalindromeGame.getTopHighestScoreList()[0].getScore());
-		assertEquals(u2.getTotalScore(), PalindromeGame.getTopTotalScoreList()[0].getScore());
+		assertEquals(u2.getHighestScore(), PalindromeGame.getHighestScoreRanks()[0].getScore());
+		assertEquals(u2.getTotalScore(), PalindromeGame.getTotalScoreRanks()[0].getScore());
 		
 	}
 	
@@ -54,8 +54,8 @@ public class PalindromeGameTest {
 		userArray[1] = processOneUser();
 		userArray[2] = processOneUser();
 		userArray[3] = processOneUser();
-		Score[] highScores = PalindromeGame.getTopHighestScoreList();
-		Score[] totalScores = PalindromeGame.getTopTotalScoreList();
+		Score[] highScores = PalindromeGame.getHighestScoreRanks();
+		Score[] totalScores = PalindromeGame.getTotalScoreRanks();
         for (int i=0; i< userArray.length; i++) {
     		System.out.println(userArray[i]);
         	highArray[i] = userArray[i].getHighestScore();
@@ -105,8 +105,8 @@ public class PalindromeGameTest {
 		userArray[4] = processOneUser();
 		userArray[5] = processOneUser();
 		userArray[6] = processOneUser();
-		Score[] highScores = PalindromeGame.getTopHighestScoreList();
-		Score[] totalScores = PalindromeGame.getTopTotalScoreList();
+		Score[] highScores = PalindromeGame.getHighestScoreRanks();
+		Score[] totalScores = PalindromeGame.getTotalScoreRanks();
         for (int i=0; i< userArray.length; i++) {
     		System.out.println(userArray[i]);
         	highArray[i] = userArray[i].getHighestScore();
@@ -183,8 +183,8 @@ public class PalindromeGameTest {
 		
 
 		
-		Score[] highScores = PalindromeGame.getTopHighestScoreList();
-		Score[] totalScores = PalindromeGame.getTopTotalScoreList();
+		Score[] highScores = PalindromeGame.getHighestScoreRanks();
+		Score[] totalScores = PalindromeGame.getTotalScoreRanks();
 		
 		Score[] expectedHighScores = (Score[]) highestScoreQueue.toArray(new Score[0]);
 		Arrays.sort(expectedHighScores, Collections.reverseOrder());

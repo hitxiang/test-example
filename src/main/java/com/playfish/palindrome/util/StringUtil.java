@@ -8,9 +8,9 @@ public class StringUtil {
    * 
    * @see http://en.wikipedia.org/wiki/Palindrome
    * */
-  public static boolean isPalindrome(String s) {
+  public static int countPalindrome(String s) {
     
-    if (s == null || s.length() == 0) return false;
+    if (s == null || s.length() == 0) return 0;
 
     
     char[] letters = s.toCharArray();
@@ -18,9 +18,9 @@ public class StringUtil {
     while (!isPalindromeChar(letters[secCnt]) && secCnt > 0) {
       secCnt--;
     }
-    if (secCnt == 0) return false;
+    if (secCnt == 0) return 0;
     
-    
+    int count = 0;
     int firstCnt = 0;
     char firstChar, secChar;
     while (firstCnt < secCnt) {
@@ -39,13 +39,20 @@ public class StringUtil {
       
       // 'a' - 'A' = 32 or 'A' - 'a' = -32
       if (firstChar != secChar && Math.abs(firstChar - secChar) != 32) {
-        return false; 
+        return 0; 
       }
       
+      count += 2;
       firstCnt++;
       secCnt--;
     }
-    return true;
+    
+    if (firstCnt == secCnt && isPalindromeChar(letters[firstCnt])) {
+    	count ++;
+    }
+    
+    //half of the length, and round up
+    return (count +1)/2;
   }
   
   /***
