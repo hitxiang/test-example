@@ -18,6 +18,7 @@ Rule(Assumption)
 TODO(based on the order of importance)
 
 1. Imporve the user experiences by adjust the page layout, font size. Extract CSS code from Html files.
+2. Make the ranks page and registration page as a popup.
 2. Add input validity check at client side(javascript) to release the load of server, now checked only at server side.
 3. Add memory statitic report using JMX and reconsider places that needs logging.
 4. Clear the unregisted user who has not access the game based on lastActive timestamp of User object. 
