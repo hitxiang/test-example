@@ -14,6 +14,23 @@ Rule(Assumption)
 2. The score will be half of the length of palindrome string (puntuatation and word dividers is not included), the score will be round up to a integer.
 3. Only registered member can be shown in the rank list. 
 
+Introduction of code
+
+1. com.playfish.palindrome.util package
+###### StringUtil.java : Check palindrome String, and return the score. ==> A better name is needed.(more related with application)
+2. com.playfish.palindrome.model package
+###### User.java : Keep user information with a unique id(UUID).
+###### Score.jave : Used in rank list.
+3. com.playfish.palindrome.dao package
+Store and load user information from storage.
+###### UserDaoLocalImpl.java: Using ConcurrentHashMap to keep users in memory. Can use another platform or storage implements UserDao interface.
+
+4, com.playfish.palindrome.action package
+###### Controller of MVC
+5, com.playfish.palindrome.service package
+###### Main logic, store and load user information, update
+rank list.
+
 
 TODO(based on the order of importance)
 
