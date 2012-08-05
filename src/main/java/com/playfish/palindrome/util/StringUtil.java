@@ -59,7 +59,7 @@ public class StringUtil {
    * This method only checks English characters and numbers.
    */
   private static boolean isPalindromeChar(char ch){
-    return Character.isLetterOrDigit(ch);   
+    return Character.isLetter(ch);   
   }
   
 }

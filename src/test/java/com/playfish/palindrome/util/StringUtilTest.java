@@ -43,13 +43,14 @@ public class StringUtilTest {
 				"Too bad - I hid a boot",
 				"A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal - Panama!",
 				"abbA", 
-				"tattarrattat", 
-				"11/02/2011", 
-				"11/02/2,011", 
-				"11/22/11", 
-				"1/10/2011",
-				"1/ 10/2 011",
-				"20111102" };
+//				"11/02/2011", 
+//				"11/02/2,011", 
+//				"11/22/11", 
+//				"1/10/2011",
+//				"1/ 10/2 011",
+//				"20111102",
+				"tattarrattat"
+				};
 
 		for (String str : test_array) {
 			assertEquals((countLetters(str) + 1)/2, StringUtil.countPalindrome(str));
