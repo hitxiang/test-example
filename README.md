@@ -6,13 +6,13 @@ Environment
 2. Run unit test with __mvn test__
 3. Start server with __mvn jetty:run__
 4. Access url(http://localhost:8080/Palindrome), replace __localhost__ if the server is not in the same machine.
+5. Import into eclipse using pom.xml.
 
 Rule(Assumption)
 
 1. The input stick to English characters. Any other characters will be ignored.
 2. The score will be half of the length of palindrome string (puntuatation and word dividers is not included), the score will be round up to a integer.
 3. Only registered member can be shown in the rank list. 
-
 
 
 TODO(based on the order of importance)
