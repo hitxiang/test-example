@@ -19,10 +19,10 @@ TODO(based on the order of importance)
 
 1. Imporve the user experiences by adjust the page layout, font size. Extract CSS code from Html files.
 2. Make the ranks page and registration page as a popup.
-2. Add input validity check at client side(javascript) to release the load of server, now checked only at server side.
-3. Add memory statitic report using JMX and reconsider places that needs logging.
-4. Clear the unregisted user who has not access the game based on lastActive timestamp of User object. 
-5. Do stress test using JMeter, now just use unit test to simulate multithread access at logic side.
-6. Add view layer and control layer unit test, now only for logic side. 
+3. Add input validity check at client side(javascript) to release the load of server, now checked only at server side.
+4. Add memory statitic report using JMX and reconsider places that needs logging.
+5. Clear the unregisted user who has not access the game based on lastActive timestamp of User object. 
+6. Do stress test using JMeter, now just use unit test to simulate multithread access at logic side.
+7. Add view layer and control layer unit test, now only for logic side. 
 
 
