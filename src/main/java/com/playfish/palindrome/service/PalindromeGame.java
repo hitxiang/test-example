@@ -25,7 +25,8 @@ public class PalindromeGame {
 	private final static ScoreDao highScoreDao = new ScoreDao();
 	private final static ScoreDao totalScoreDao = new ScoreDao();
 	
-	private final static ExecutorService executorPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+	//private final static ExecutorService executorPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+	private final static ExecutorService executorPool = Executors.newCachedThreadPool();
 
 	private PalindromeGame() {
 	}
@@ -42,7 +43,7 @@ public class PalindromeGame {
 	public static User registerUser(String uuid, String name) {
 		final User u = userDao.register(uuid, name);
 		
-		update(u, true);
+		concurrentUpdate(u, true);
 
 			
 		return u;
@@ -51,7 +52,7 @@ public class PalindromeGame {
 	public static void updateRanks(final User u, final int score) {                
 		boolean highestUpdted = u.update(score);
 		if (u.isRegisted()) {		  
-		  update(u, highestUpdted);
+		  concurrentUpdate(u, highestUpdted);
 		}
 	}
 
@@ -73,7 +74,7 @@ public class PalindromeGame {
 	}
 	
 
-	private static void update(final User u, boolean isToUpdateHighRank) {
+	private static void concurrentUpdate(final User u, boolean isToUpdateHighRank) {
           final List<Callable<Boolean>> partitions =
               new ArrayList<Callable<Boolean>>();
           
@@ -97,6 +98,15 @@ public class PalindromeGame {
           } catch (InterruptedException ex) {
             logger.error("Cannot update scrore ranks:" + ex);
           }
+	  
+	}
+	
+	private static void sequenceUpdate(final User u, boolean isToUpdateHighRank) {
+		if (isToUpdateHighRank) {
+			highScoreDao.checkAndUpdateQueue(u, u.getHighestScore());
+		}
+
+		totalScoreDao.checkAndUpdateQueue(u, u.getTotalScore());
 	  
 	}
 
