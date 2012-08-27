@@ -14,7 +14,7 @@ public class ScoreDao {
   private final static int NUM_IN_TOP_RANK = 5;
   private final static Logger logger = Logger.getLogger(ScoreDao.class);
 
-  private final Queue<Score> queue = new PriorityQueue<Score>();
+  private final Queue<Score> queue = new PriorityQueue<Score>(NUM_IN_TOP_RANK);
   private final Object lock = new Object();
 
   public Score[] getScores() {
