@@ -57,7 +57,7 @@ public class PalindromeGameTest {
 		
 		//update score after name is registed
 		User u = userArray[0];
-		PalindromeGame.update(u, u.getHighestScore() + 10);
+		PalindromeGame.updateRanks(u, u.getHighestScore() + 10);
 		
 		Score[] highScores = PalindromeGame.getHighestScoreRanks();
 		Score[] totalScores = PalindromeGame.getTotalScoreRanks();
@@ -112,7 +112,7 @@ public class PalindromeGameTest {
 		userArray[6] = processOneUser();
 		//update score after name is registed
 		User u = userArray[0];
-		PalindromeGame.update(u, u.getHighestScore() + 10);
+		PalindromeGame.updateRanks(u, u.getHighestScore() + 10);
 		
 		Score[] highScores = PalindromeGame.getHighestScoreRanks();
 		Score[] totalScores = PalindromeGame.getTotalScoreRanks();
@@ -256,7 +256,7 @@ public class PalindromeGameTest {
 		for (int score : scores) {
 			total += score;
 			if ( score > max) max = score;
-			PalindromeGame.update(u1, score);
+			PalindromeGame.updateRanks(u1, score);
 		}
 		assertEquals(max, u1.getHighestScore());
 		assertEquals(total ,u1.getTotalScore());
@@ -286,7 +286,7 @@ public class PalindromeGameTest {
 			System.out.println(u1.getId() + " : " + score);
 			total += score;
 			if ( score > max) max = score;
-			PalindromeGame.update(u1, score);
+			PalindromeGame.updateRanks(u1, score);
 		}
 		assertEquals(max, u1.getHighestScore());
 		assertEquals(total ,u1.getTotalScore());

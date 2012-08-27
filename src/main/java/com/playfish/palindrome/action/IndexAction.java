@@ -45,7 +45,7 @@ public class IndexAction extends ActionSupport {
 				u.setLastInput(palindromeString);
 				int score = StringUtil.countPalindrome(palindromeString);
 				if (score > 0) {
-					PalindromeGame.update(u, score);	
+					PalindromeGame.updateRanks(u, score);	
 				} 
 				addActionMessage(getMessages(score));			
 			}
