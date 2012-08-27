@@ -44,7 +44,6 @@ public class PalindromeGame {
 		final User u = userDao.register(uuid, name);
 		
 		concurrentUpdate(u, true);
-
 			
 		return u;
 	}
@@ -52,7 +51,7 @@ public class PalindromeGame {
 	public static void updateRanks(final User u, final int score) {                
 		boolean highestUpdted = u.update(score);
 		if (u.isRegisted()) {		  
-		  concurrentUpdate(u, highestUpdted);
+			concurrentUpdate(u, highestUpdted);
 		}
 	}
 

@@ -44,11 +44,11 @@ public class ScoreDao {
 
         // Update only when the new score is greater than the smallest score in queue
         if (minScore.getScore() < score) {
-          updateQueue(queue, newScore, true);
+          updateQueue(newScore, true);
         }
       } else {
         Score newScore = new Score(u.getId(), u.getName(), score);
-        updateQueue(queue, newScore, false);
+        updateQueue(newScore, false);
 
       }
     }
@@ -63,7 +63,7 @@ public class ScoreDao {
   }
 
 
-  private static void updateQueue(Queue<Score> queue, Score newScore, boolean isToDeleteOld) {
+  private void updateQueue(Score newScore, boolean isToDeleteOld) {
     if (queue.contains(newScore)) {
       // Update when the user exists
       for (Score s : queue) {
