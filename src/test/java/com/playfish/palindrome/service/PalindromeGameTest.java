@@ -156,20 +156,29 @@ public class PalindromeGameTest {
 	@Test
 	public void testMultipleUser_multithread() {
 		ExecutorService executor = Executors.newFixedThreadPool(NUM_IN_TOP_RANK * 10);
-		List<Future<User>> list = new ArrayList<Future<User>>();
-		for (int i = 0; i < 20000 * NUM_IN_TOP_RANK; i++) {
-			Callable<User> worker = new TestCallable();
-			Future<User> u = executor.submit(worker);
-			list.add(u);
+		List<Future<User>> allList = new ArrayList<Future<User>>();
+		for (int i = 0; i < 2000; i++) {
+	        final List<Callable<User>> partitions =
+	                  new ArrayList<Callable<User>>();
+			for (int j = 0; j < NUM_IN_TOP_RANK * 5; j++) {
+				partitions.add(new TestCallable());
+			}
+			
+			try {
+				allList.addAll(executor.invokeAll(partitions));				
+			} catch (InterruptedException ex) {
+				// ignore
+			}
+
 		}
 		
 		AbstractQueue<Score> highestScoreQueue = 
-		        new PriorityQueue<Score>(5);
+		        new PriorityQueue<Score>(NUM_IN_TOP_RANK);
 		AbstractQueue<Score> totalScoreQueue = 
-		        new PriorityQueue<Score>(5);
+		        new PriorityQueue<Score>(NUM_IN_TOP_RANK);
                 User u;
 		// Now retrieve the result
-		for (Future<User> future : list) {
+		for (Future<User> future : allList) {
 			try {
 				u = future.get();
 				highestScoreQueue.add(new Score(u.getId(), u.getName(), u.getHighestScore()));
