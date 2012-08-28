@@ -5,8 +5,8 @@ public class Score implements Comparable<Score> {
   private String id;
   private long score;
   private String name;
-  
-  
+
+
   public Score(String id, String name, long score) {
     this.id = id;
     this.name = name;
@@ -21,11 +21,11 @@ public class Score implements Comparable<Score> {
   public long getScore() {
     return score;
   }
-  
+
   public void setScore(long score) {
     this.score = score;
   }
-  
+
   @Override
   public String toString() {
     return "Score [id=" + id + ", score=" + score + ", name=" + name + "]";
@@ -38,14 +38,14 @@ public class Score implements Comparable<Score> {
 
   @Override
   public boolean equals(Object obj) {
-    Score other = (Score) obj;  
+    Score other = (Score) obj;
     return id.equals(other.id);
   }
 
-@Override
-public int compareTo(Score s) {
-	return Long.signum(this.score - s.score);
-}
-  
+  @Override
+  public int compareTo(Score s) {
+    return Long.signum(this.score - s.score);
+  }
+
 
 }

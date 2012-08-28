@@ -5,95 +5,93 @@ import java.util.UUID;
 import java.io.Serializable;
 
 public class User implements Serializable {
-	private static final long serialVersionUID = -6621015387677942871L;
-	
-	final public static String IDENTIFY_TAG = "PF_UUID";
-	private String id;
-	private String name;
-	private boolean registed;
+  private static final long serialVersionUID = -6621015387677942871L;
 
-	private long totalScore = 0;
-	private int highestScore = 0;
-	private int lastScore = 0;
+  final public static String IDENTIFY_TAG = "PF_UUID";
+  private String id;
+  private String name;
+  private boolean registed;
 
-	private String lastInput;
-	private Date lastActive;
+  private long totalScore = 0;
+  private int highestScore = 0;
+  private int lastScore = 0;
 
-	public User(String id) {
-		this.id = id;
-		this.registed = false;
-		this.lastActive = new Date();
-	}
-	
-	public User() {
-		this(UUID.randomUUID().toString());
-	}
+  private String lastInput;
+  private Date lastActive;
 
-	public String getId() {
-		return id;
-	}
+  public User(String id) {
+    this.id = id;
+    this.registed = false;
+    this.lastActive = new Date();
+  }
 
-	public String getName() {
-		return name;
-	}
+  public User() {
+    this(UUID.randomUUID().toString());
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public long getTotalScore() {
-		return totalScore;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public int getHighestScore() {
-		return highestScore;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setLastInput(String lastInput) {
-		this.lastInput = lastInput;
-	}	
+  public long getTotalScore() {
+    return totalScore;
+  }
 
-	public boolean isRegisted() {
-		return registed;
-	}
+  public int getHighestScore() {
+    return highestScore;
+  }
 
-	public void setRegisted(boolean registed) {
-		this.registed = registed;
-	}
+  public void setLastInput(String lastInput) {
+    this.lastInput = lastInput;
+  }
 
-	public Date getLastActive() {
-		return lastActive;
-	}
+  public boolean isRegisted() {
+    return registed;
+  }
 
-	public int getLastScore() {
-		return lastScore;
-	}
+  public void setRegisted(boolean registed) {
+    this.registed = registed;
+  }
 
-	public boolean isSameWithLast(String str) {
-		return (lastInput != null && lastInput.equalsIgnoreCase(str));
-	}
+  public Date getLastActive() {
+    return lastActive;
+  }
 
-	/***
-	 * @param score
-	 * @return true if highestScore is updated
-	 */
-	public boolean update(int score) {
-		this.lastScore = score;
-		this.lastActive = new Date();
-		this.totalScore += score;
-		if (score > this.highestScore) {
-			this.highestScore = score;
-			return true;
-		}
-		return false;
-	}
+  public int getLastScore() {
+    return lastScore;
+  }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + 
-				", name=" + name + 
-				", totalScore=" + totalScore + 
-				", highestScore=" + highestScore + "]";
-	}
+  public boolean isSameWithLast(String str) {
+    return (lastInput != null && lastInput.equalsIgnoreCase(str));
+  }
+
+  /***
+   * @param score
+   * @return true if highestScore is updated
+   */
+  public boolean update(int score) {
+    this.lastScore = score;
+    this.lastActive = new Date();
+    this.totalScore += score;
+    if (score > this.highestScore) {
+      this.highestScore = score;
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public String toString() {
+    return "User [id=" + id + ", name=" + name + ", totalScore=" + totalScore + ", highestScore="
+        + highestScore + "]";
+  }
 
 }

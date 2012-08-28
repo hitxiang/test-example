@@ -52,10 +52,10 @@ public class ScoreDao {
 
       }
     }
-    
+
     return true;
   }
-  
+
   public void clear() {
     synchronized (lock) {
       queue.clear();
@@ -91,7 +91,6 @@ public class ScoreDao {
 
     }
   }
-  
-  
+
 
 }
