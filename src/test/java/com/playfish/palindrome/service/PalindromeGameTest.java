@@ -308,7 +308,7 @@ public class PalindromeGameTest {
 
     u1 = PalindromeGame.registerUser(u1.getId(), "test_" + u1.getId());
     
-    if (new Random().nextBoolean()) {
+    if (rand.nextBoolean()) {
       PalindromeGame.getHighestScoreRanks();
       PalindromeGame.getTotalScoreRanks();    
     }
