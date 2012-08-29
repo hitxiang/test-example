@@ -228,9 +228,9 @@ public class PalindromeGameTest {
     Score[] highScores = PalindromeGame.getHighestScoreRanks();
     Score[] totalScores = PalindromeGame.getTotalScoreRanks();
 
-    Score[] expectedHighScores = (Score[]) highestScoreQueue.toArray(new Score[0]);
+    Score[] expectedHighScores = highestScoreQueue.toArray(new Score[0]);
     Arrays.sort(expectedHighScores, Collections.reverseOrder());
-    Score[] expectedTotalScores = (Score[]) totalScoreQueue.toArray(new Score[0]);
+    Score[] expectedTotalScores = totalScoreQueue.toArray(new Score[0]);
     Arrays.sort(expectedTotalScores, Collections.reverseOrder());
 
     long[] expectedHighArray = new long[NUM_IN_TOP_RANK];
@@ -307,6 +307,13 @@ public class PalindromeGameTest {
 
 
     u1 = PalindromeGame.registerUser(u1.getId(), "test_" + u1.getId());
+    
+    if (new Random().nextBoolean()) {
+      PalindromeGame.getHighestScoreRanks();
+      PalindromeGame.getTotalScoreRanks();    
+    }
+
+    
     return u1;
 
   }

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.apache.log4j.Logger;
 
@@ -15,12 +17,19 @@ public class ScoreDao {
   private final static Logger logger = Logger.getLogger(ScoreDao.class);
 
   private final Queue<Score> queue = new PriorityQueue<Score>(NUM_IN_TOP_RANK);
-  private final Object lock = new Object();
+  private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+  private final Lock readLock = readWriteLock.readLock();
+  private final Lock writeLock = readWriteLock.writeLock();
+  
 
   public Score[] getScores() {
     Score[] result;
-    synchronized (lock) {
-      result = (Score[]) queue.toArray(new Score[0]);
+    
+    readLock.lock();
+    try {
+      result = queue.toArray(new Score[0]);
+    } finally {
+      readLock.unlock();
     }
 
     Arrays.sort(result, Collections.reverseOrder());
@@ -37,28 +46,34 @@ public class ScoreDao {
   }
 
   public boolean checkAndUpdateQueue(User u, long score) {
-    synchronized (lock) {
+    Score newScore = new Score(u.getId(), u.getName(), score);
+    
+    writeLock.lock();
+    try {
       if (queue.size() >= NUM_IN_TOP_RANK) {
         Score minScore = queue.peek();
-        Score newScore = new Score(u.getId(), u.getName(), score);
 
         // Update only when the new score is greater than the smallest score in queue
         if (minScore.getScore() < score) {
           updateQueue(newScore, true);
         }
       } else {
-        Score newScore = new Score(u.getId(), u.getName(), score);
         updateQueue(newScore, false);
-
       }
+    } finally {
+      writeLock.unlock();
     }
 
     return true;
   }
 
   public void clear() {
-    synchronized (lock) {
+    
+    writeLock.lock();
+    try {
       queue.clear();
+    } finally {
+      writeLock.unlock();
     }
   }
 
