@@ -2,6 +2,7 @@ package com.playfish.palindrome.dao;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.locks.Lock;
@@ -45,8 +46,19 @@ public class ScoreDao {
     return result;
   }
 
-  public boolean checkAndUpdateQueue(User u, long score) {
-    Score newScore = new Score(u.getId(), u.getName(), score);
+  public boolean checkAndUpdateQueue(User u, Score.TYPE type) {
+	long score = 0;
+	switch (type) {
+	case HIGH:
+		score = u.getHighestScore();
+		break;
+	case TOTAL:
+		score = u.getTotalScore();
+		break;
+	default:
+		logger.error("Wrong score type");
+	}
+    Score newScore = new Score(type, u.getId(), u.getName(), score);
     
     writeLock.lock();
     try {
@@ -79,17 +91,19 @@ public class ScoreDao {
 
 
   private void updateQueue(Score newScore, boolean isToDeleteOld) {
-    if (queue.contains(newScore)) {
+	Comparator<Score> comparator = new Score.IdComparator();
+	Score[] scoreArr = queue.toArray(new Score[0]);
+	Arrays.sort(scoreArr, comparator);
+	int index = Arrays.binarySearch(scoreArr, newScore, comparator);
+    if (index >= 0) {
       // Update when the user exists
-      for (Score s : queue) {
-        if (s.equals(newScore)) {
-          if (logger.isDebugEnabled()) {
-            logger.debug(queue + " ==> update Score: " + s + " ==> " + newScore.getScore());
-          }
-
-          s.setScore(newScore.getScore());
-        }
+      Score oldScore = scoreArr[index];
+      if (logger.isDebugEnabled()) {
+        logger.debug(queue + " ==> update Score: " + oldScore + " ==> " + newScore.getScore());
       }
+
+      oldScore.setScore(newScore.getScore());
+
     } else {
       // Remove the smallest one, add the new one
       if (isToDeleteOld) {

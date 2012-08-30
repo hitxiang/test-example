@@ -1,0 +1,143 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Palindrome 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ Palindrome ---
+[debug] execute contextualize
+[WARNING] Using platform encoding (MacRoman actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ Palindrome ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ Palindrome ---
+[debug] execute contextualize
+[WARNING] Using platform encoding (MacRoman actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/zhang/Projects/java/test-palindrome/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ Palindrome ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ Palindrome ---
+[INFO] Surefire report directory: /Users/zhang/Projects/java/test-palindrome/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.playfish.palindrome.model.ScoreComparatorTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 sec
+Running com.playfish.palindrome.service.PalindromeGameTest
+2012-08-31 00:30:54,172 INFO  com.playfish.palindrome.service.PalindromeGameTest.setup:30 - >>>>>> ========= new start ==========
+2012-08-31 00:30:54,177 INFO  com.playfish.palindrome.service.PalindromeGameTest.setup:30 - >>>>>> ========= new start ==========
+2012-08-31 00:30:54,178 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - a98dae91-24d4-4be6-96b0-f4d4c0d3726d : 25
+2012-08-31 00:30:54,180 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - a98dae91-24d4-4be6-96b0-f4d4c0d3726d : 37
+2012-08-31 00:30:54,181 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - a98dae91-24d4-4be6-96b0-f4d4c0d3726d : 19
+2012-08-31 00:30:54,183 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - a98dae91-24d4-4be6-96b0-f4d4c0d3726d : 61
+2012-08-31 00:30:54,184 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - a98dae91-24d4-4be6-96b0-f4d4c0d3726d : 4
+2012-08-31 00:30:54,186 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - a98dae91-24d4-4be6-96b0-f4d4c0d3726d : 75
+2012-08-31 00:30:54,187 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - a98dae91-24d4-4be6-96b0-f4d4c0d3726d : 356
+2012-08-31 00:30:54,193 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [] <== add    Score: Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]
+2012-08-31 00:30:54,193 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [] <== add    Score: Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]
+2012-08-31 00:30:54,195 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - acc38a4f-dead-4ea4-9a60-fa1fea60627b : 20
+2012-08-31 00:30:54,196 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - acc38a4f-dead-4ea4-9a60-fa1fea60627b : 23
+2012-08-31 00:30:54,198 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - acc38a4f-dead-4ea4-9a60-fa1fea60627b : 16
+2012-08-31 00:30:54,199 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - acc38a4f-dead-4ea4-9a60-fa1fea60627b : 80
+2012-08-31 00:30:54,200 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - acc38a4f-dead-4ea4-9a60-fa1fea60627b : 10
+2012-08-31 00:30:54,201 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - acc38a4f-dead-4ea4-9a60-fa1fea60627b : 65
+2012-08-31 00:30:54,202 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - acc38a4f-dead-4ea4-9a60-fa1fea60627b : 104
+2012-08-31 00:30:54,204 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] <== add    Score: Score [type=TOTAL, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=318, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b]
+2012-08-31 00:30:54,204 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] <== add    Score: Score [type=HIGH, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=104, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b]
+2012-08-31 00:30:54,207 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 040ead04-0ed0-449b-b2a4-6cfc6f392400 : 13
+2012-08-31 00:30:54,208 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 040ead04-0ed0-449b-b2a4-6cfc6f392400 : 7
+2012-08-31 00:30:54,209 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 040ead04-0ed0-449b-b2a4-6cfc6f392400 : 54
+2012-08-31 00:30:54,210 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 040ead04-0ed0-449b-b2a4-6cfc6f392400 : 13
+2012-08-31 00:30:54,211 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 040ead04-0ed0-449b-b2a4-6cfc6f392400 : 7
+2012-08-31 00:30:54,212 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 040ead04-0ed0-449b-b2a4-6cfc6f392400 : 9
+2012-08-31 00:30:54,213 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 040ead04-0ed0-449b-b2a4-6cfc6f392400 : 449
+2012-08-31 00:30:54,215 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=HIGH, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=104, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] <== add    Score: Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400]
+2012-08-31 00:30:54,216 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=TOTAL, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=318, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] <== add    Score: Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400]
+2012-08-31 00:30:54,218 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - dcb609d2-0c2d-4f92-8a67-fec574531ae7 : 9
+2012-08-31 00:30:54,219 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - dcb609d2-0c2d-4f92-8a67-fec574531ae7 : 37
+2012-08-31 00:30:54,220 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - dcb609d2-0c2d-4f92-8a67-fec574531ae7 : 4
+2012-08-31 00:30:54,221 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - dcb609d2-0c2d-4f92-8a67-fec574531ae7 : 5
+2012-08-31 00:30:54,222 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - dcb609d2-0c2d-4f92-8a67-fec574531ae7 : 6
+2012-08-31 00:30:54,223 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - dcb609d2-0c2d-4f92-8a67-fec574531ae7 : 89
+2012-08-31 00:30:54,224 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - dcb609d2-0c2d-4f92-8a67-fec574531ae7 : 508
+2012-08-31 00:30:54,226 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=TOTAL, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=318, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400]] <== add    Score: Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]
+2012-08-31 00:30:54,226 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=HIGH, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=104, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400]] <== add    Score: Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]
+2012-08-31 00:30:54,227 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - da0862bf-58f8-4403-9333-f85b8f03feb1 : 5
+2012-08-31 00:30:54,228 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - da0862bf-58f8-4403-9333-f85b8f03feb1 : 17
+2012-08-31 00:30:54,229 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - da0862bf-58f8-4403-9333-f85b8f03feb1 : 20
+2012-08-31 00:30:54,230 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - da0862bf-58f8-4403-9333-f85b8f03feb1 : 14
+2012-08-31 00:30:54,230 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - da0862bf-58f8-4403-9333-f85b8f03feb1 : 10
+2012-08-31 00:30:54,231 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - da0862bf-58f8-4403-9333-f85b8f03feb1 : 15
+2012-08-31 00:30:54,232 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - da0862bf-58f8-4403-9333-f85b8f03feb1 : 580
+2012-08-31 00:30:54,233 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=TOTAL, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=318, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] <== add    Score: Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1]
+2012-08-31 00:30:54,233 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=HIGH, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=104, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] <== add    Score: Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1]
+2012-08-31 00:30:54,236 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - f3cf597b-c1fe-439b-b1b7-81ee874b85ad : 24
+2012-08-31 00:30:54,237 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - f3cf597b-c1fe-439b-b1b7-81ee874b85ad : 25
+2012-08-31 00:30:54,238 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - f3cf597b-c1fe-439b-b1b7-81ee874b85ad : 49
+2012-08-31 00:30:54,239 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - f3cf597b-c1fe-439b-b1b7-81ee874b85ad : 44
+2012-08-31 00:30:54,239 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - f3cf597b-c1fe-439b-b1b7-81ee874b85ad : 5
+2012-08-31 00:30:54,241 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - f3cf597b-c1fe-439b-b1b7-81ee874b85ad : 79
+2012-08-31 00:30:54,241 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - f3cf597b-c1fe-439b-b1b7-81ee874b85ad : 350
+2012-08-31 00:30:54,245 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:112 - [Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1]] ==> delete Score: Score [type=HIGH, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=104, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b]
+2012-08-31 00:30:54,246 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1]] <== add    Score: Score [type=HIGH, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=350, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad]
+2012-08-31 00:30:54,248 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:112 - [Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] ==> delete Score: Score [type=TOTAL, id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, score=318, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b]
+2012-08-31 00:30:54,249 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:117 - [Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] <== add    Score: Score [type=TOTAL, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=576, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad]
+2012-08-31 00:30:54,252 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 4205c11c-a9b5-4831-be56-ea12e123c6e4 : 8
+2012-08-31 00:30:54,253 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 4205c11c-a9b5-4831-be56-ea12e123c6e4 : 26
+2012-08-31 00:30:54,254 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 4205c11c-a9b5-4831-be56-ea12e123c6e4 : 35
+2012-08-31 00:30:54,255 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 4205c11c-a9b5-4831-be56-ea12e123c6e4 : 18
+2012-08-31 00:30:54,256 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 4205c11c-a9b5-4831-be56-ea12e123c6e4 : 12
+2012-08-31 00:30:54,256 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 4205c11c-a9b5-4831-be56-ea12e123c6e4 : 102
+2012-08-31 00:30:54,257 INFO  com.playfish.palindrome.service.PalindromeGameTest.processOneUser:307 - 4205c11c-a9b5-4831-be56-ea12e123c6e4 : 173
+2012-08-31 00:30:54,268 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=HIGH, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=350, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] ==> update Score: Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=356, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d] ==> 366
+2012-08-31 00:30:54,273 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=TOTAL, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=576, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] ==> update Score: Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=577, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d] ==> 943
+2012-08-31 00:30:54,275 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=HIGH, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=350, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=366, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] ==> update Score: Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=449, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400] ==> 459
+2012-08-31 00:30:54,275 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=TOTAL, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=576, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=943, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] ==> update Score: Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=552, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400] ==> 1011
+2012-08-31 00:30:54,277 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=HIGH, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=350, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=366, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=459, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] ==> update Score: Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=508, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7] ==> 518
+2012-08-31 00:30:54,277 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=1011, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=TOTAL, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=576, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=943, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] ==> update Score: Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=658, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7] ==> 1176
+2012-08-31 00:30:54,292 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=HIGH, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=350, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=366, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=459, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=518, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] ==> update Score: Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=580, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1] ==> 590
+2012-08-31 00:30:54,293 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=TOTAL, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=1011, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=TOTAL, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=576, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=TOTAL, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=1176, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7], Score [type=TOTAL, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=943, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d]] ==> update Score: Score [type=TOTAL, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=661, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1] ==> 1251
+2012-08-31 00:30:54,295 DEBUG com.playfish.palindrome.dao.ScoreDao.updateQueue:102 - [Score [type=HIGH, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=350, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad], Score [type=HIGH, id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, score=366, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d], Score [type=HIGH, id=040ead04-0ed0-449b-b2a4-6cfc6f392400, score=459, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400], Score [type=HIGH, id=da0862bf-58f8-4403-9333-f85b8f03feb1, score=590, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1], Score [type=HIGH, id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, score=518, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7]] ==> update Score: Score [type=HIGH, id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, score=350, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad] ==> 360
+2012-08-31 00:30:54,296 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:129 - User [id=a98dae91-24d4-4be6-96b0-f4d4c0d3726d, name=test_a98dae91-24d4-4be6-96b0-f4d4c0d3726d, totalScore=943, highestScore=366]
+2012-08-31 00:30:54,297 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:129 - User [id=acc38a4f-dead-4ea4-9a60-fa1fea60627b, name=test_acc38a4f-dead-4ea4-9a60-fa1fea60627b, totalScore=432, highestScore=114]
+2012-08-31 00:30:54,298 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:129 - User [id=040ead04-0ed0-449b-b2a4-6cfc6f392400, name=test_040ead04-0ed0-449b-b2a4-6cfc6f392400, totalScore=1011, highestScore=459]
+2012-08-31 00:30:54,299 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:129 - User [id=dcb609d2-0c2d-4f92-8a67-fec574531ae7, name=test_dcb609d2-0c2d-4f92-8a67-fec574531ae7, totalScore=1176, highestScore=518]
+2012-08-31 00:30:54,300 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:129 - User [id=da0862bf-58f8-4403-9333-f85b8f03feb1, name=test_da0862bf-58f8-4403-9333-f85b8f03feb1, totalScore=1251, highestScore=590]
+2012-08-31 00:30:54,300 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:129 - User [id=f3cf597b-c1fe-439b-b1b7-81ee874b85ad, name=test_f3cf597b-c1fe-439b-b1b7-81ee874b85ad, totalScore=936, highestScore=360]
+2012-08-31 00:30:54,301 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:129 - User [id=4205c11c-a9b5-4831-be56-ea12e123c6e4, name=test_4205c11c-a9b5-4831-be56-ea12e123c6e4, totalScore=557, highestScore=183]
+expected totolArray:2012-08-31 00:30:54,302 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:151 - [1251, 1176, 1011, 943, 936]
+actual   totolArray:2012-08-31 00:30:54,303 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:153 - [1251, 1176, 1011, 943, 576]
+expected highArray:2012-08-31 00:30:54,304 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:156 - [590, 518, 459, 366, 360]
+actual   totolArray:2012-08-31 00:30:54,304 INFO  com.playfish.palindrome.service.PalindromeGameTest.testMultipleUser_great5:158 - [590, 518, 459, 366, 360]
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.297 sec <<< FAILURE!
+Running com.playfish.palindrome.util.StringUtilTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+
+Results :
+
+Failed tests:   testMultipleUser_great5(com.playfish.palindrome.service.PalindromeGameTest): arrays first differed at element [4]; expected:<936> but was:<576>
+
+Tests run: 8, Failures: 1, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.936s
+[INFO] Finished at: Fri Aug 31 00:30:54 JST 2012
+[INFO] Final Memory: 4M/81M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.10:test (default-test) on project Palindrome: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /Users/zhang/Projects/java/test-palindrome/target/surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

@@ -1,13 +1,25 @@
 package com.playfish.palindrome.model;
 
+import java.util.Comparator;
+
 
 public class Score implements Comparable<Score> {
   private String id;
   private long score;
   private String name;
+  private TYPE type;
 
+  public enum TYPE {TOTAL, HIGH}
+  public static class IdComparator implements  Comparator<Score> {
 
-  public Score(String id, String name, long score) {
+	@Override
+	public int compare(Score arg0, Score arg1) {
+		return arg0.id.compareTo(arg1.id);
+	}
+	  
+  }
+  public Score(TYPE type, String id, String name, long score) {
+	this.type = type;
     this.id = id;
     this.name = name;
     this.score = score;
@@ -28,7 +40,7 @@ public class Score implements Comparable<Score> {
 
   @Override
   public String toString() {
-    return "Score [id=" + id + ", score=" + score + ", name=" + name + "]";
+    return "Score [type=" + type +", id=" + id + ", score=" + score + ", name=" + name + "]";
   }
 
   @Override

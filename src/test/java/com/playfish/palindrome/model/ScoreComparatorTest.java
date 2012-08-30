@@ -10,11 +10,11 @@ public class ScoreComparatorTest {
   @Test
   public void testOrderInQueue() {
     AbstractQueue<Score> highestScoreQueue = new PriorityQueue<Score>(5);
-    highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name101", 101));
-    highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name1101", 1101));
-    highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name11", 11));
-    highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name9", 9));
-    highestScoreQueue.add(new Score(UUID.randomUUID().toString(), "name99", 99));
+    highestScoreQueue.add(new Score(Score.TYPE.HIGH, UUID.randomUUID().toString(), "name101", 101));
+    highestScoreQueue.add(new Score(Score.TYPE.HIGH,UUID.randomUUID().toString(), "name1101", 1101));
+    highestScoreQueue.add(new Score(Score.TYPE.HIGH,UUID.randomUUID().toString(), "name11", 11));
+    highestScoreQueue.add(new Score(Score.TYPE.HIGH,UUID.randomUUID().toString(), "name9", 9));
+    highestScoreQueue.add(new Score(Score.TYPE.HIGH,UUID.randomUUID().toString(), "name99", 99));
 
     long[] result = new long[5];
     long[] expecteds = new long[] {9, 11, 99, 101, 1101};
@@ -28,11 +28,11 @@ public class ScoreComparatorTest {
   @Test
   public void testOrderInSort() {
     List<Score> highestScoreList = new ArrayList<Score>(5);
-    highestScoreList.add(new Score(UUID.randomUUID().toString(), "name101", 101));
-    highestScoreList.add(new Score(UUID.randomUUID().toString(), "name1101", 1101));
-    highestScoreList.add(new Score(UUID.randomUUID().toString(), "name11", 11));
-    highestScoreList.add(new Score(UUID.randomUUID().toString(), "name9", 9));
-    highestScoreList.add(new Score(UUID.randomUUID().toString(), "name99", 99));
+    highestScoreList.add(new Score(Score.TYPE.HIGH, UUID.randomUUID().toString(), "name101", 101));
+    highestScoreList.add(new Score(Score.TYPE.HIGH, UUID.randomUUID().toString(), "name1101", 1101));
+    highestScoreList.add(new Score(Score.TYPE.HIGH, UUID.randomUUID().toString(), "name11", 11));
+    highestScoreList.add(new Score(Score.TYPE.HIGH, UUID.randomUUID().toString(), "name9", 9));
+    highestScoreList.add(new Score(Score.TYPE.HIGH, UUID.randomUUID().toString(), "name99", 99));
 
     Score[] highestArray = highestScoreList.toArray(new Score[0]);
     Arrays.sort(highestArray);

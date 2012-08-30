@@ -79,14 +79,14 @@ public class PalindromeGame {
     if (isToUpdateHighRank) {
       partitions.add(new Callable<Boolean>() {
         public Boolean call() throws Exception {
-          return highScoreDao.checkAndUpdateQueue(u, u.getHighestScore());
+          return highScoreDao.checkAndUpdateQueue(u, Score.TYPE.HIGH);
         }
       });
     }
 
     partitions.add(new Callable<Boolean>() {
       public Boolean call() throws Exception {
-        return totalScoreDao.checkAndUpdateQueue(u, u.getTotalScore());
+        return totalScoreDao.checkAndUpdateQueue(u, Score.TYPE.TOTAL);
       }
     });
 
@@ -101,10 +101,10 @@ public class PalindromeGame {
 
   private static void sequenceUpdate(final User u, boolean isToUpdateHighRank) {
     if (isToUpdateHighRank) {
-      highScoreDao.checkAndUpdateQueue(u, u.getHighestScore());
+      highScoreDao.checkAndUpdateQueue(u, Score.TYPE.HIGH);
     }
 
-    totalScoreDao.checkAndUpdateQueue(u, u.getTotalScore());
+    totalScoreDao.checkAndUpdateQueue(u, Score.TYPE.TOTAL);
 
   }
 
