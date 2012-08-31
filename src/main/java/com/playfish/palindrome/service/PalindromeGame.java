@@ -79,24 +79,23 @@ public class PalindromeGame {
   }
 
   private static void concurrentUpdate(final User u, boolean isToUpdateHighRank) {
-    final List<Callable<Boolean>> partitions = new ArrayList<Callable<Boolean>>(2);
+    List<Future<Boolean>> results = new ArrayList<Future<Boolean>>(2);
 
-    partitions.add(new Callable<Boolean>() {
+    results.add(executorPool.submit(new Callable<Boolean>() {
       public Boolean call() throws Exception {
         return totalScoreDao.checkAndUpdateQueue(u, Score.TYPE.TOTAL);
       }
-    });
+    }));
 
     if (isToUpdateHighRank) {
-      partitions.add(new Callable<Boolean>() {
+      results.add(executorPool.submit(new Callable<Boolean>() {
         public Boolean call() throws Exception {
           return highScoreDao.checkAndUpdateQueue(u, Score.TYPE.HIGH);
         }
-      });
+      }));
     }
 
     try {
-      List<Future<Boolean>> results = executorPool.invokeAll(partitions, 10, TimeUnit.SECONDS);
       for (final Future<Boolean> issucceed : results) {
         if (!issucceed.get()) {
           logger.error("Cannot update scrore ranks");
