@@ -5,14 +5,14 @@
     
     <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
        <layout class="org.apache.log4j.PatternLayout"> 
-          <param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n"/> 
+          <param name="ConversionPattern" value="%d %-5p %c{1}.%M:%L - %m%n"/> 
        </layout> 
     </appender>
     
 	<appender name="FILE" class="org.apache.log4j.FileAppender">
 	  <param name="File" value="log.txt" />
 	  <layout class="org.apache.log4j.PatternLayout">
-	    <param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n"/> 
+	    <param name="ConversionPattern" value="%d %-5p %c{1}.%M:%L - %m%n"/> 
 	  </layout>
 	</appender>
  

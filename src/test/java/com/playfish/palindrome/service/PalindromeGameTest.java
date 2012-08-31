@@ -259,7 +259,7 @@ public class PalindromeGameTest {
 
     System.out.print("expected highArray:");
     logger.info(Arrays.toString(expectedHighArray));
-    System.out.print("actual   totolArray:");
+    System.out.print("actual   highArray:");
     logger.info(Arrays.toString(actualHighArray));
 
     assertArrayEquals(expectedHighArray, actualHighArray);
