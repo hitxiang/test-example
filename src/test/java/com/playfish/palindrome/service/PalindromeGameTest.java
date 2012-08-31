@@ -16,7 +16,6 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.playfish.palindrome.dao.ScoreDao;
 import com.playfish.palindrome.model.*;
 
 public class PalindromeGameTest {
@@ -37,7 +36,7 @@ public class PalindromeGameTest {
     assertEquals(0, PalindromeGame.getTotalScoreRanks().length);
   }
 
-  //@Test
+  @Test
   public void testOneUser_WithRegister() {
     User u2 = processOneUser();
     assertEquals(u2.getHighestScore(), PalindromeGame.getHighestScoreRanks()[0].getScore());
@@ -45,7 +44,7 @@ public class PalindromeGameTest {
 
   }
 
-  //@Test
+  @Test
   public void testMultipleUser_less5() {
 
     User[] userArray = new User[4];
@@ -63,7 +62,7 @@ public class PalindromeGameTest {
 
     // update score after name is registed
     for (final User u: userArray) {
-        PalindromeGame.updateRanks(u, u.getHighestScore() + 10);    	
+      PalindromeGame.updateRanks(u, u.getHighestScore() + 10);
     }
 
     Score[] highScores = PalindromeGame.getHighestScoreRanks();
@@ -119,7 +118,7 @@ public class PalindromeGameTest {
     userArray[6] = processOneUser();
     // update score after name is registed
     for (final User u: userArray) {
-        PalindromeGame.updateRanks(u, u.getHighestScore() + 10);    	
+      PalindromeGame.updateRanks(u, u.getHighestScore() + 10);
     }
 
 
@@ -154,7 +153,7 @@ public class PalindromeGameTest {
 
     System.out.print("expected highArray:");
     logger.info(Arrays.toString(highArray2));
-    System.out.print("actual   totolArray:");
+    System.out.print("actual   highArray:");
     logger.info(Arrays.toString(actualHighArray));
 
     assertArrayEquals(totalArray2, actualTotalArray);
@@ -162,7 +161,7 @@ public class PalindromeGameTest {
 
   }
 
-  //@Test
+  @Test
   public void testMultipleUser_multithread() {
     ExecutorService executor = Executors.newFixedThreadPool(NUM_IN_TOP_RANK * 10);
 
@@ -170,50 +169,50 @@ public class PalindromeGameTest {
     final CountDownLatch endSignal = new CountDownLatch(NUM_IN_TOP_RANK * 5 * 2000);
     List<Future<User>> allList = new ArrayList<Future<User>>();
     for (int i = 0; i < 2000; i++) {
-      
+
       for (int j = 0; j < NUM_IN_TOP_RANK * 5; j++) {
         Future<User> future = executor.submit(new Callable<User>() {
           @Override
           public User call() throws Exception {
             barrier.await();
-            User u =  processOneUser();
-            PalindromeGame.updateRanks(u, u.getHighestScore() + rand.nextInt(3)); 
+            User u = processOneUser();
+            Thread.sleep(rand.nextInt(20));
+            PalindromeGame.updateRanks(u, u.getHighestScore() + rand.nextInt(3));
             endSignal.countDown();
             return u;
           }
         });
-        
+
         allList.add(future);
       }
 
       try {
         barrier.await();
       } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       } catch (BrokenBarrierException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
 
     } // outter loop
 
-    AbstractQueue<Score> highestScoreQueue = new PriorityQueue<Score>(NUM_IN_TOP_RANK);
-    AbstractQueue<Score> totalScoreQueue = new PriorityQueue<Score>(NUM_IN_TOP_RANK);
-    User u;
-    
     try {
       endSignal.await();
     } catch (InterruptedException e1) {
       // Auto-generated catch block
       e1.printStackTrace();
     }
-    
+
+    User u;
+    AbstractQueue<Score> highestScoreQueue = new PriorityQueue<Score>(NUM_IN_TOP_RANK);
+    AbstractQueue<Score> totalScoreQueue = new PriorityQueue<Score>(NUM_IN_TOP_RANK);
+
     // Now retrieve the result
     for (Future<User> future : allList) {
       try {
         u = future.get();
-        highestScoreQueue.add(new Score(Score.TYPE.HIGH, u.getId(), u.getName(), u.getHighestScore()));
+        highestScoreQueue.add(new Score(Score.TYPE.HIGH, u.getId(), u.getName(), u
+            .getHighestScore()));
         if (highestScoreQueue.size() > 5) {
           highestScoreQueue.poll();
         }
@@ -314,13 +313,13 @@ public class PalindromeGameTest {
 
 
     u1 = PalindromeGame.registerUser(u1.getId(), "test_" + u1.getId());
-    
+
     if (rand.nextBoolean()) {
       PalindromeGame.getHighestScoreRanks();
-      PalindromeGame.getTotalScoreRanks();    
+      PalindromeGame.getTotalScoreRanks();
     }
 
-    
+
     return u1;
 
   }

@@ -4,8 +4,10 @@ package com.playfish.palindrome.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -72,9 +74,18 @@ public class PalindromeGame {
     userDao.clear();
   }
 
+  public static void shutdownThreadPool() {
+    executorPool.shutdown();
+  }
 
   private static void concurrentUpdate(final User u, boolean isToUpdateHighRank) {
-    final List<Callable<Boolean>> partitions = new ArrayList<Callable<Boolean>>();
+    final List<Callable<Boolean>> partitions = new ArrayList<Callable<Boolean>>(2);
+
+    partitions.add(new Callable<Boolean>() {
+      public Boolean call() throws Exception {
+        return totalScoreDao.checkAndUpdateQueue(u, Score.TYPE.TOTAL);
+      }
+    });
 
     if (isToUpdateHighRank) {
       partitions.add(new Callable<Boolean>() {
@@ -84,17 +95,17 @@ public class PalindromeGame {
       });
     }
 
-    partitions.add(new Callable<Boolean>() {
-      public Boolean call() throws Exception {
-        return totalScoreDao.checkAndUpdateQueue(u, Score.TYPE.TOTAL);
-      }
-    });
-
-
     try {
-      executorPool.invokeAll(partitions, 10, TimeUnit.SECONDS);
+      List<Future<Boolean>> results = executorPool.invokeAll(partitions, 10, TimeUnit.SECONDS);
+      for (final Future<Boolean> issucceed : results) {
+        if (!issucceed.get()) {
+          logger.error("Cannot update scrore ranks");
+        }
+      }
     } catch (InterruptedException ex) {
       logger.error("Cannot update scrore ranks:" + ex);
+    } catch (ExecutionException e) {
+      logger.error("Cannot update scrore ranks:" + e);
     }
 
   }

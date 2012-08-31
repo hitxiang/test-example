@@ -21,11 +21,11 @@ public class ScoreDao {
   private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
   private final Lock readLock = readWriteLock.readLock();
   private final Lock writeLock = readWriteLock.writeLock();
-  
+
 
   public Score[] getScores() {
     Score[] result;
-    
+
     readLock.lock();
     try {
       result = queue.toArray(new Score[0]);
@@ -47,23 +47,29 @@ public class ScoreDao {
   }
 
   public boolean checkAndUpdateQueue(User u, Score.TYPE type) {
-	long score = 0;
-	switch (type) {
-	case HIGH:
-		score = u.getHighestScore();
-		break;
-	case TOTAL:
-		score = u.getTotalScore();
-		break;
-	default:
-		logger.error("Wrong score type");
-	}
+    long score = 0;
+    switch (type) {
+      case HIGH:
+        score = u.getHighestScore();
+        break;
+      case TOTAL:
+        score = u.getTotalScore();
+        break;
+      default:
+        logger.error("Wrong score type");
+    }
     Score newScore = new Score(type, u.getId(), u.getName(), score);
-    
+
     writeLock.lock();
     try {
       if (queue.size() >= NUM_IN_TOP_RANK) {
+
         Score minScore = queue.peek();
+//        if (logger.isDebugEnabled()) {
+//          logger.debug(queue);
+//          logger.debug(newScore + " min: " + minScore.getScore());
+//          
+//        }
 
         // Update only when the new score is greater than the smallest score in queue
         if (minScore.getScore() < score) {
@@ -80,7 +86,7 @@ public class ScoreDao {
   }
 
   public void clear() {
-    
+
     writeLock.lock();
     try {
       queue.clear();
@@ -91,10 +97,10 @@ public class ScoreDao {
 
 
   private void updateQueue(Score newScore, boolean isToDeleteOld) {
-	Comparator<Score> comparator = new Score.IdComparator();
-	Score[] scoreArr = queue.toArray(new Score[0]);
-	Arrays.sort(scoreArr, comparator);
-	int index = Arrays.binarySearch(scoreArr, newScore, comparator);
+    Comparator<Score> comparator = new Score.IdComparator();
+    Score[] scoreArr = queue.toArray(new Score[0]);
+    Arrays.sort(scoreArr, comparator);
+    int index = Arrays.binarySearch(scoreArr, newScore, comparator);
     if (index >= 0) {
       // Update when the user exists
       Score oldScore = scoreArr[index];
@@ -102,7 +108,10 @@ public class ScoreDao {
         logger.debug(queue + " ==> update Score: " + oldScore + " ==> " + newScore.getScore());
       }
 
-      oldScore.setScore(newScore.getScore());
+      // queue will be out of order if you update the instance directly like the follwoing
+      // oldScore.setScore(newScore.getScore());
+      queue.remove(oldScore);
+      queue.add(newScore);
 
     } else {
       // Remove the smallest one, add the new one

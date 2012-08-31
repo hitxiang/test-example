@@ -9,17 +9,22 @@ public class Score implements Comparable<Score> {
   private String name;
   private TYPE type;
 
-  public enum TYPE {TOTAL, HIGH}
-  public static class IdComparator implements  Comparator<Score> {
 
-	@Override
-	public int compare(Score arg0, Score arg1) {
-		return arg0.id.compareTo(arg1.id);
-	}
-	  
+  // TYPE helps debuging
+  public enum TYPE {
+    TOTAL, HIGH
   }
+  public static class IdComparator implements Comparator<Score> {
+
+    @Override
+    public int compare(Score arg0, Score arg1) {
+      return arg0.id.compareTo(arg1.id);
+    }
+
+  }
+
   public Score(TYPE type, String id, String name, long score) {
-	this.type = type;
+    this.type = type;
     this.id = id;
     this.name = name;
     this.score = score;
@@ -40,7 +45,7 @@ public class Score implements Comparable<Score> {
 
   @Override
   public String toString() {
-    return "Score [type=" + type +", id=" + id + ", score=" + score + ", name=" + name + "]";
+    return "Score [type=" + type + ", id=" + id + ", score=" + score + ", name=" + name + "]";
   }
 
   @Override
